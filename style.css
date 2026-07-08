@@ -526,7 +526,7 @@ button:focus-visible {
 .contact-inner .eyebrow { justify-self: center; }
 .contact-desc {
   color: var(--text-soft);
-  max-width: 52ch;
+  max-width: 55ch;
   margin: 0 auto 44px;
 }
 
@@ -542,7 +542,7 @@ button:focus-visible {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 22px 16px;
+  padding: 22px 10px;
   display: flex;
   flex-direction: column;
   gap: 8px;
