@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills | Harsh Popat</title>
+  <meta name="description" content="Software engineering and machine learning skills, with links to Harsh Popat’s work.">
+  <link rel="canonical" href="https://harshpopat.vercel.app/skills.html">
+  <meta property="og:title" content="Skills | Harsh Popat">
+  <meta property="og:description" content="Software engineering and machine learning skills, with links to Harsh Popat’s work.">
+  <meta property="og:url" content="https://harshpopat.vercel.app/skills.html">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header" id="top">
+  <div class="header-inner">
+    <a href="index.html" class="logo">Harsh Popat<span class="logo-dot">.</span></a>
+    <nav class="nav" id="nav" aria-label="Main navigation">
+      <a href="about.html">About</a>
+      <a href="open-source.html">Open Source</a>
+      <a href="projects.html">Projects</a>
+      <a href="skills.html" aria-current="page">Skills</a>
+      <a href="achievements.html">Achievements</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <a href="Harsh_Popat_Resume.pdf" class="btn btn-ghost" download>Resume</a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="section">
+    <div class="section-inner">
+      <p class="eyebrow">skills():</p>
+      <h1>Technical Skills</h1>
+      <div class="skills-grid">
+        <article class="skill-card">
+          <h3>Programming &amp; Algorithms</h3>
+          <p>Practiced data structures and algorithms in Python and studied C++ fundamentals.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">C++</span><span class="tag">DSA</span></div>
+          <a class="project-link" href="achievements.html#learning">Learning milestones →</a>
+        </article>
+        <article class="skill-card">
+          <h3>ML &amp; Data Science</h3>
+          <p>Built classification and regression workflows and compared models using evaluation and explainability tools.</p>
+          <div class="tags"><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Scikit-learn</span><span class="tag">SHAP</span></div>
+          <a class="project-link" href="projects.html#applied-ml">Applied ML projects →</a>
+        </article>
+        <article class="skill-card">
+          <h3>AI Applications</h3>
+          <p>Built prototypes for retrieval, multi-agent evaluation, and webcam inference.</p>
+          <div class="tags"><span class="tag">RAG</span><span class="tag">LLM agents</span><span class="tag">OpenCV</span></div>
+          <a class="project-link" href="projects.html">AI projects →</a>
+        </article>
+        <article class="skill-card">
+          <h3>Cloud-Native Engineering</h3>
+          <p>Contributed initializer validation, SDK input checks, and Kubernetes UI fixes.</p>
+          <div class="tags"><span class="tag">Kubernetes</span><span class="tag">Kubeflow</span><span class="tag">Go</span><span class="tag">Python</span></div>
+          <a class="project-link" href="open-source.html#kubeflow">Infrastructure contributions →</a>
+        </article>
+        <article class="skill-card">
+          <h3>Web &amp; Developer Tooling</h3>
+          <p>Built repository tooling and worked on UI behavior and tool argument validation.</p>
+          <div class="tags"><span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">React</span><span class="tag">MCP</span></div>
+          <a class="project-link" href="projects.html#shcontext">SHContext →</a>
+        </article>
+        <article class="skill-card">
+          <h3>Testing &amp; Bitcoin</h3>
+          <p>Worked on wallet smoke testing and native SegWit PSBT round-trip coverage.</p>
+          <div class="tags"><span class="tag">Integration tests</span><span class="tag">Bitcoin Core regtest</span><span class="tag">PSBT</span></div>
+          <a class="project-link" href="open-source.html#bitcoin">Bitcoin contributions →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="section-inner footer-inner">
+    <span>© <span id="year"></span> Harsh Popat. All rights reserved.</span>
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

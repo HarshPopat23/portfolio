@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Harsh Popat</title>
+  <meta name="description" content="Education, background and current interests of Harsh Popat, a CSE undergraduate at IIIT Kota.">
+  <link rel="canonical" href="https://harshpopat.vercel.app/about.html">
+  <meta property="og:title" content="About | Harsh Popat">
+  <meta property="og:description" content="Education, background and current interests of Harsh Popat, a CSE undergraduate at IIIT Kota.">
+  <meta property="og:url" content="https://harshpopat.vercel.app/about.html">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header" id="top">
+  <div class="header-inner">
+    <a href="index.html" class="logo">Harsh Popat<span class="logo-dot">.</span></a>
+    <nav class="nav" id="nav" aria-label="Main navigation">
+      <a href="about.html" aria-current="page">About</a>
+      <a href="open-source.html">Open Source</a>
+      <a href="projects.html">Projects</a>
+      <a href="skills.html">Skills</a>
+      <a href="achievements.html">Achievements</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <a href="Harsh_Popat_Resume.pdf" class="btn btn-ghost" download>Resume</a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="section">
+    <div class="section-inner">
+      <p class="eyebrow">about_harsh():</p>
+      <h1>About Me</h1>
+      <div class="about-grid">
+        <div class="about-photo"><img src="images/me.jpg" width="702" height="561" alt="Portrait of Harsh Popat"></div>
+        <div class="about-text">
+          <p>I’m pursuing a B.Tech in Computer Science and Engineering at IIIT Kota (2025–2029). My work spans ML workflows, developer tooling, and upstream fixes where a clear reproduction or regression test makes a change easier to review.</p>
+          <p>I’m interested in GSoC and LFX Mentorship projects around cloud-native infrastructure and tooling, and Summer of Bitcoin developer projects around wallet reliability and integration testing. I’m also open to software engineering and applied AI/ML internships.</p>
+          <p>In independent projects I’ve worked on model evaluation, explainability, and deployment artifact generation. In open source I’ve investigated Kubernetes diagnostics, JSON Schema validation and wallet session behavior.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section section-alt">
+    <div class="section-inner">
+      <p class="eyebrow">education():</p>
+      <h2>Education &amp; Coursework</h2>
+      <article class="exp-item">
+        <div class="exp-head">
+          <div><h3>IIIT Kota</h3><p class="exp-sub">B.Tech in Computer Science and Engineering · 2025–2029</p></div>
+        </div>
+        <ul class="exp-list">
+          <li>Computer science foundations include data structures and algorithms, operating systems, database management, computer networks, and object-oriented programming.</li>
+          <li>Independent study includes applied machine learning, numerical computing, and Bitcoin transactions and wallet testing.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="section-inner footer-inner">
+    <span>© <span id="year"></span> Harsh Popat. All rights reserved.</span>
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects | Harsh Popat</title>
+  <meta name="description" content="Developer tools, machine learning experiments and application prototypes by Harsh Popat.">
+  <link rel="canonical" href="https://harshpopat.vercel.app/projects.html">
+  <meta property="og:title" content="Projects | Harsh Popat">
+  <meta property="og:description" content="Developer tools, machine learning experiments and application prototypes by Harsh Popat.">
+  <meta property="og:url" content="https://harshpopat.vercel.app/projects.html">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header" id="top">
+  <div class="header-inner">
+    <a href="index.html" class="logo">Harsh Popat<span class="logo-dot">.</span></a>
+    <nav class="nav" id="nav" aria-label="Main navigation">
+      <a href="about.html">About</a>
+      <a href="open-source.html">Open Source</a>
+      <a href="projects.html" aria-current="page">Projects</a>
+      <a href="skills.html">Skills</a>
+      <a href="achievements.html">Achievements</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <a href="Harsh_Popat_Resume.pdf" class="btn btn-ghost" download>Resume</a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="section">
+    <div class="section-inner">
+      <p class="eyebrow">projects():</p>
+      <h1>Projects</h1>
+      <div class="projects-grid">
+        <article class="project-card" id="shcontext">
+          <h3>SHContext</h3>
+          <p>A repository context tool that mirrors eligible folders into a context tree with source-referenced summaries, validation, and incremental refresh.</p>
+          <div class="tags"><span class="tag">TypeScript</span><span class="tag">CLI</span><span class="tag">Developer tools</span></div>
+          <a class="project-link" href="https://github.com/HarshPopat23/SHContext">SHContext source →</a>
+        </article>
+        <article class="project-card">
+          <h3>Battle-Answer</h3>
+          <p>An experimental multi-agent arena built on Jake Schincariol’s Arena. Agents propose and critique answers before a configurable judge scores them. Early component tests exposed persistence issues and false completion claims. Full tournament validation was pending in the published update.</p>
+          <div class="tags"><span class="tag">LLM agents</span><span class="tag">Evaluation</span></div>
+          <a class="project-link" href="https://github.com/HarshPopat23/Battle-Answer">Battle-Answer source →</a>
+        </article>
+        <article class="project-card">
+          <h3>MakeModelAI</h3>
+          <p>An AutoML project that profiles CSV data, trains and ranks models, and generates Python pipeline code, FastAPI inference artifacts, and Docker configuration.</p>
+          <div class="tags"><span class="tag">Scikit-learn</span><span class="tag">React</span><span class="tag">Model evaluation</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section class="section section-alt" id="research">
+    <div class="section-inner">
+      <p class="eyebrow">research():</p>
+      <h2>ML Research</h2>
+      <div class="projects-grid">
+        <article class="project-card">
+          <h3>Sinter-Anneal</h3>
+          <p>An independent pilot on whether temporary oscillatory nonlinearities during training can anneal away to a mergeable LoRA adapter. The reported CPU study found endpoint mergeability and no reliable accuracy improvement over standard LoRA on the tested digits dataset and small MLP.</p>
+          <div class="tags"><span class="tag">LoRA</span><span class="tag">CPU experiments</span><span class="tag">Research pilot</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="applied-ml">
+    <div class="section-inner">
+      <p class="eyebrow">applied_ml():</p>
+      <h2>Applied ML Projects</h2>
+      <div class="projects-grid">
+        <article class="project-card">
+          <h3>House Price Prediction</h3>
+          <p>A regression project with model explainability for inspecting what drives predicted prices.</p>
+          <div class="tags"><span class="tag">Regression</span><span class="tag">Explainability</span></div>
+          <a class="project-link" href="https://github.com/HarshPopat23/House-Price-Prediction-with-Explainability">House price project source →</a>
+        </article>
+        <article class="project-card">
+          <h3>Fake News Detection</h3>
+          <p>A text classification exercise covering text preprocessing, TF-IDF features, and model evaluation.</p>
+          <div class="tags"><span class="tag">NLP</span><span class="tag">TF-IDF</span></div>
+          <a class="project-link" href="https://github.com/HarshPopat23/Fake-News-Detection-System">Fake news project source →</a>
+        </article>
+        <article class="project-card">
+          <h3>Customer Churn Prediction</h3>
+          <p>An end-to-end churn project that examines model outputs alongside patterns relevant to customer retention.</p>
+          <div class="tags"><span class="tag">Classification</span><span class="tag">Data analysis</span></div>
+          <a class="project-link" href="https://github.com/HarshPopat23/Customer-Churn-Prediction">Churn project source →</a>
+        </article>
+        <article class="project-card">
+          <h3>Employee Attrition Prediction</h3>
+          <p>Compared logistic regression and random forest on HR data and used SHAP to interpret the model’s predictions.</p>
+          <div class="tags"><span class="tag">Classification</span><span class="tag">SHAP</span></div>
+        </article>
+        <article class="project-card">
+          <h3>Breast Cancer Classification Study</h3>
+          <p>A learning project comparing a perceptron and a neural network on a classification dataset, including preprocessing and scaling.</p>
+          <div class="tags"><span class="tag">Perceptron</span><span class="tag">Neural network</span></div>
+        </article>
+        <article class="project-card">
+          <h3>Real-Time Object Detection</h3>
+          <p>Built a webcam inference prototype and used FPS tracking to compare CPU and GPU execution.</p>
+          <div class="tags"><span class="tag">YOLOv8</span><span class="tag">OpenCV</span></div>
+        </article>
+        <article class="project-card">
+          <h3>Zero-Friction AI Health Companion</h3>
+          <p>A prototype that combines food-image classification, nutrition estimates, and air-quality data.</p>
+          <div class="tags"><span class="tag">TensorFlow</span><span class="tag">Streamlit</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section class="section section-alt">
+    <div class="section-inner">
+      <p class="eyebrow">prototypes():</p>
+      <h2>AI Application Prototypes</h2>
+      <div class="projects-grid">
+        <article class="project-card">
+          <h3>AI NotesStu</h3>
+          <p>A study assistant prototype that accepts notes or PDFs, creates summaries, and retrieves relevant passages for question answering.</p>
+          <div class="tags"><span class="tag">RAG</span><span class="tag">React</span><span class="tag">FastAPI</span></div>
+        </article>
+        <article class="project-card">
+          <h3>Relent AI</h3>
+          <p>A video-editing prototype that transcribes long footage, finds passages matching a topic, and cuts the selected clips.</p>
+          <div class="tags"><span class="tag">faster-whisper</span><span class="tag">FFmpeg</span></div>
+        </article>
+        <article class="project-card">
+          <h3>Local Research Workflow</h3>
+          <p>An experiment that splits research into search, reading, drafting, and critique stages.</p>
+          <div class="tags"><span class="tag">Multi-agent workflows</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="section-inner footer-inner">
+    <span>© <span id="year"></span> Harsh Popat. All rights reserved.</span>
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
