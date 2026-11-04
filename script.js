@@ -20,12 +20,12 @@ document.addEventListener('DOMContentLoaded', function () {
       toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
 
-    // Close menu after a link is tapped (mobile UX)
-    nav.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && nav.classList.contains('open')) {
         nav.classList.remove('open');
         toggle.setAttribute('aria-expanded', 'false');
-      });
+        toggle.focus();
+      }
     });
   }
 

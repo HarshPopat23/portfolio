@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open Source | Harsh Popat</title>
+  <meta name="description" content="Harsh Popat’s upstream contributions across Kubeflow, Headlamp, Sourcemeta, Jam and Krux integration tests.">
+  <link rel="canonical" href="https://harshpopat.vercel.app/open-source.html">
+  <meta property="og:title" content="Open Source | Harsh Popat">
+  <meta property="og:description" content="Harsh Popat’s upstream contributions across Kubeflow, Headlamp, Sourcemeta, Jam and Krux integration tests.">
+  <meta property="og:url" content="https://harshpopat.vercel.app/open-source.html">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header" id="top">
+  <div class="header-inner">
+    <a href="index.html" class="logo">Harsh Popat<span class="logo-dot">.</span></a>
+    <nav class="nav" id="nav" aria-label="Main navigation">
+      <a href="about.html">About</a>
+      <a href="open-source.html" aria-current="page">Open Source</a>
+      <a href="projects.html">Projects</a>
+      <a href="skills.html">Skills</a>
+      <a href="achievements.html">Achievements</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <a href="Harsh_Popat_Resume.pdf" class="btn btn-ghost" download>Resume</a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="section">
+    <div class="section-inner">
+      <p class="eyebrow">contributions():</p>
+      <h1>Open-Source Contributions</h1>
+      <p class="section-description">Selected upstream changes with links to the code and review. Merged and proposed changes are labeled separately.</p>
+    </div>
+  </section>
+  <section class="section section-alt" id="kubeflow">
+    <div class="section-inner">
+      <p class="eyebrow">ml_infrastructure():</p>
+      <h2>Kubeflow</h2>
+      <article class="exp-item">
+        <div class="exp-head">
+          <div><h3>Trainer and Python SDK</h3><p class="exp-sub">ML infrastructure · Go and Python</p></div>
+        </div>
+        <ul class="exp-list">
+          <li><a class="project-link" href="https://github.com/kubeflow/trainer/pull/3714">trainer #3714 · Merged →</a> Validated initializer volume names at admission so misconfigured runtimes fail before scheduling.</li>
+          <li><a class="project-link" href="https://github.com/kubeflow/trainer/pull/3741">trainer #3741 · Merged →</a> Added validation for cache storage URIs.</li>
+          <li><a class="project-link" href="https://github.com/kubeflow/trainer/pull/3826">trainer #3826 · Merged →</a> Improved error messages when initializing datasets from a provider.</li>
+          <li><a class="project-link" href="https://github.com/kubeflow/sdk/pull/554">sdk #554 · Merged →</a> Validated the polling interval passed to the SDK’s job-status wait helper.</li>
+          <li><a class="project-link" href="https://github.com/kubeflow/sdk/pull/643">sdk #643 · Merged →</a> Removed SDK storage URI validation that was inappropriate for Hugging Face sources.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+  <section class="section" id="headlamp">
+    <div class="section-inner">
+      <p class="eyebrow">kubernetes():</p>
+      <h2>Headlamp</h2>
+      <article class="exp-item">
+        <div class="exp-head">
+          <div><h3>Kubernetes UI and MCP</h3><p class="exp-sub">Frontend behavior and tool argument validation</p></div>
+        </div>
+        <ul class="exp-list">
+          <li><a class="project-link" href="https://github.com/kubernetes-sigs/headlamp/pull/7904">headlamp #7904 · Merged →</a> Surfaced ReplicaSet failure conditions in diagnostics.</li>
+          <li><a class="project-link" href="https://github.com/kubernetes-sigs/headlamp/pull/7914">headlamp #7914 · Merged →</a> Preserved existing container port entries when editing an individual port.</li>
+          <li><a class="project-link" href="https://github.com/kubernetes-sigs/headlamp/pull/7981">headlamp #7981 · Proposed →</a> Added support for required nullable MCP tool parameters.</li>
+          <li><a class="project-link" href="https://github.com/kubernetes-sigs/headlamp/pull/7984">headlamp #7984 · Proposed →</a> Proposed validating MCP calls against the original tool schemas.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+  <section class="section section-alt" id="sourcemeta">
+    <div class="section-inner">
+      <p class="eyebrow">schema_tools():</p>
+      <h2>Sourcemeta</h2>
+      <article class="exp-item">
+        <div class="exp-head">
+          <div><h3>Core and JSON Schema CLI</h3><p class="exp-sub">Schema validation, serialization, and developer experience</p></div>
+        </div>
+        <ul class="exp-list">
+          <li><a class="project-link" href="https://github.com/sourcemeta/core/pull/3003">core #3003 · Merged →</a> Accepted integer-valued numbers in MCP fields.</li>
+          <li><a class="project-link" href="https://github.com/sourcemeta/jsonschema/pull/864">jsonschema #864 · Merged →</a> Added a global terminal color policy for automatic, always-on, or disabled color.</li>
+          <li><a class="project-link" href="https://github.com/sourcemeta/jsonschema/pull/867">jsonschema #867 · Merged →</a> Added a branded header to CLI help.</li>
+          <li><a class="project-link" href="https://github.com/sourcemeta/jsonschema/pull/871">jsonschema #871 · Merged →</a> Styled human-readable lint diagnostics.</li>
+          <li><a class="project-link" href="https://github.com/sourcemeta/jsonschema/pull/878">jsonschema #878 · Merged →</a> Styled human-readable format checks.</li>
+          <li><a class="project-link" href="https://github.com/sourcemeta/jsonschema/pull/883">jsonschema #883 · Merged →</a> Styled install progress and tested that redirected and JSON output stayed plain.</li>
+          <li><a class="project-link" href="https://github.com/sourcemeta/core/pull/3045">core #3045 · Merged →</a> Added fixed-iteration allocation profiling for benchmarks.</li>
+          <li><a class="project-link" href="https://github.com/sourcemeta/core/pull/3057">core #3057 · Proposed →</a> Batched writes for short strings during compact JSON serialization.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+  <section class="section" id="bitcoin">
+    <div class="section-inner">
+      <p class="eyebrow">bitcoin():</p>
+      <h2>Bitcoin Open Source</h2>
+      <article class="exp-item">
+        <div class="exp-head">
+          <div><h3>Jam and Krux integration tests</h3><p class="exp-sub">Wallet reliability, regtest, and PSBT signing</p></div>
+        </div>
+        <ul class="exp-list">
+          <li><a class="project-link" href="https://github.com/joinmarket-webui/jam/pull/1532">jam #1532 · Merged →</a> Prevented address reuse when moving funds from expired fidelity bonds.</li>
+          <li><a class="project-link" href="https://github.com/joinmarket-webui/jam/pull/1551">jam #1551 · Merged →</a> Added a live JoinMarket NG regtest wallet smoke test.</li>
+          <li><a class="project-link" href="https://github.com/joinmarket-webui/jam/pull/1571">jam #1571 · Merged →</a> Prevented stale invalid-token responses from clearing newer credentials.</li>
+          <li><a class="project-link" href="https://github.com/qlrd/krux-integration-tests/pull/18">krux-integration-tests #18 · Proposed →</a> Added a native SegWit round trip to the Krux integration lab to exercise PSBT review and signing against Bitcoin Core regtest.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="section-inner footer-inner">
+    <span>© <span id="year"></span> Harsh Popat. All rights reserved.</span>
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
