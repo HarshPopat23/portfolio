@@ -588,8 +588,8 @@ button:focus-visible {
   .contact-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 720px) {
-  .nav { 
+@media (max-width: 800px) {
+  .nav {
     position: absolute;
     top: 100%;
     left: 0;
@@ -604,7 +604,9 @@ button:focus-visible {
   .nav.open { display: flex; }
   .nav-toggle { display: flex; }
   .header-actions .btn-ghost { display: none; }
+}
 
+@media (max-width: 720px) {
   .hero { padding: 56px 0 64px; }
   .hero-text h1 { font-size: 2.4rem; }
   .hero-cta { flex-direction: column; }
@@ -651,4 +653,30 @@ main [id] { scroll-margin-top: 100px; }
 
 @media (max-width: 720px) {
   .section h1 { font-size: 1.6rem; }
+}
+
+/* Writings cards share the project card layout. */
+.writing-card {
+  max-width: 360px;
+}
+
+.writing-card img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+}
+
+.writing-card h2 {
+  font-size: 1.05rem;
+  margin-bottom: 12px;
+}
+
+.writing-card:hover {
+  border-color: var(--accent);
+}
+
+.writing-card:hover .project-link,
+.writing-card:focus-visible .project-link {
+  text-decoration: underline;
 }
