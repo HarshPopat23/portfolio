@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>From Terminal Colors to Protocol Contracts | Harsh Popat</title>
+  <meta name="description" content="Lessons from 24 merged Sourcemeta Core pull requests, from terminal styling to JSON performance, cryptography, and the Model Context Protocol.">
+  <link rel="canonical" href="https://harshpopat.vercel.app/sourcemeta-core-contributions.html">
+  <meta property="og:title" content="From Terminal Colors to Protocol Contracts | Harsh Popat">
+  <meta property="og:description" content="Lessons from 24 merged Sourcemeta Core pull requests, from terminal styling to JSON performance, cryptography, and the Model Context Protocol.">
+  <meta property="og:url" content="https://harshpopat.vercel.app/sourcemeta-core-contributions.html">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://harshpopat.vercel.app/images/sourcemeta-core-illustration.webp">
+  <meta property="og:image:alt" content="Pencil drawing of a terminal connected to braces and a branching diagram on cream paper">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header" id="top">
+  <div class="header-inner">
+    <a href="index.html" class="logo">Harsh Popat<span class="logo-dot">.</span></a>
+    <nav class="nav" id="nav" aria-label="Main navigation">
+      <a href="about.html">About</a>
+      <a href="open-source.html">Open Source</a>
+      <a href="projects.html">Projects</a>
+      <a href="skills.html">Skills</a>
+      <a href="achievements.html">Achievements</a>
+      <a href="writings.html" aria-current="location">Writings</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <a href="Harsh_Popat_Resume.pdf" class="btn btn-ghost" download>Resume</a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="section">
+  <div class="section-inner">
+    <a class="project-link" href="writings.html">← Back to Writings</a>
+    <article class="writing-article">
+      <header class="writing-article-header">
+        <div>
+          <p class="eyebrow">Sourcemeta Core</p>
+          <h1>From Terminal Colors to Protocol Contracts</h1>
+          <p class="writing-subtitle">What 24 merged pull requests in Sourcemeta Core taught me about systems engineering</p>
+          <p class="writing-byline">Harsh Popat · November 2026</p>
+        </div>
+        <img src="images/sourcemeta-core-illustration.webp" width="768" height="1152" alt="Pencil drawing of a terminal connected to braces and a branching diagram on cream paper">
+      </header>
+      <p>My first contributions to Sourcemeta Core dealt with a question I could see on screen: when should a command print color? A few weeks later I was looking at a stream of four integers and asking why only three reached a callback. Both came down to an assumption at an interface. Captured output can still need color, and copying an input iterator can leave both copies attached to the same stream.</p>
+      <p>Across 24 merged pull requests, I worked on terminal output, JSON and OpenAPI, cryptography, benchmarking, and the Model Context Protocol (MCP). The most useful part of the work was learning to describe exactly what each change guarantees, how I could demonstrate it, and where its guarantee ends.</p>
+      <h2>Start with a boundary you can see</h2>
+      <p>I started by adding ANSI styling primitives to Core. The library can style interactive terminal output and suppress escape sequences when the destination is redirected. Then I added an explicit policy for callers that want color even in captured output. The caller chooses the rendering policy independently of the destination. Captured subprocess tests make the distinction concrete by comparing exact bytes under each mode. <a href="https://github.com/sourcemeta/core/pull/2790">#2790</a> <a href="https://github.com/sourcemeta/core/pull/2808">#2808</a></p>
+      <p>Unified diffs raised a related design question. A CLI might want additions in green and deletions in red, while another consumer might need plain patch output. I added a callback that receives the type, prefix, and content of each line. Core keeps control of the diff structure and line endings, and the caller chooses how the line looks. <a href="https://github.com/sourcemeta/core/pull/2871">#2871</a></p>
+      <p>That separation became a useful pattern for the rest of the work. The library owns a contract that other programs can rely on. Consumers get an explicit way to make the choices that belong to them.</p>
+      <h2>Where the input contract matters</h2>
+      <h3>Four integers in, three callbacks out</h3>
+      <p>With two workers, I could feed <code>1 2 3 4</code> into <code>parallel_for_each</code> through a C++ stream iterator and get callbacks for only <code>1 3 4</code>. The helper copied an iterator to look ahead, but both copies were tied to the same underlying stream. Advancing the copy consumed input. Queueing iterator copies for later work relied on the same multipass assumption.</p>
+      <p>The fix was to process single-pass inputs in order on the calling thread and report an effective parallelism of one. Forward iterators still use the worker path. The tests check that every stream value arrives exactly once, and a forward-iterator control checks that callbacks still run on workers. <a href="https://github.com/sourcemeta/core/pull/3054">#3054</a></p>
+      <h3>What a failure leaves behind</h3>
+      <p>For a memory-mapped binary read, a length of <code>SIZE_MAX</code> could make the output string throw a length error before the reader checked how many bytes remained. I moved that bounds check ahead of the resize. The regression checks both the error type and the reader’s position afterward. If the caller handles the error, the bytes that were available before the failed read are still available. <a href="https://github.com/sourcemeta/core/pull/3055">#3055</a></p>
+      <p>A JWT audience check had a different ordering problem. A correctly signed token could carry an audience array with a matching string and a number. The verifier accepted the match even though the array violated the claim’s required shape. Checking every member before accepting the match makes <code>["client", 42]</code> and <code>[42, "client"]</code> fail consistently. I tested both orders through the audience helper and the signed-token verification path. <a href="https://github.com/sourcemeta/core/pull/3053">#3053</a></p>
+      <p>The OpenAPI case led to a different outcome. I built a small multi-document fixture for a discriminator mapping whose anchor is discovered later in the bundle. The target resolved consistently before and after bundling, so the merged PR adds coverage without changing the bundler. That fixture exercises a branch the original bundle suite hadn’t reached in my coverage run. <a href="https://github.com/sourcemeta/core/pull/3075">#3075</a></p>
+      <h2>Measure the operation that changed</h2>
+      <h3>From allocator questions to stream writes</h3>
+      <p>I added benchmarks for KrakenD parsing and pretty-printing and for compact serialization of an ISO-language schema. Keeping file loading outside the timed loops lets each benchmark focus on a specific workload. Later, I added <code>--repeat</code> so the runner could execute a chosen number of one-iteration runs without adaptive calibration, making external profiling captures easier to compare. <a href="https://github.com/sourcemeta/core/pull/2898">#2898</a> <a href="https://github.com/sourcemeta/core/pull/3045">#3045</a></p>
+      <p>Compact serialization offered a way to isolate a smaller cost. The existing writer already emitted contiguous unescaped characters in runs. I added a path that emits a short unescaped string and both of its quotes in one stream write. In the paired Linux measurements reported on the PR, wall time fell by 11.6% to 27.7% across two fixtures, two allocator configurations, and two output modes. Allocation counts were unchanged. The improvement also showed up when I reused the stream and borrowed its output view. <a href="https://github.com/sourcemeta/core/pull/3057">#3057</a></p>
+      <p>The first version slowed down an escape-heavy synthetic case. It scanned the same prefix twice when the escape was near the end of a short string. I passed the first escape position to the existing writer so it could resume there. That case mattered because it forced me to measure the fallback alongside the fast path. <a href="https://github.com/sourcemeta/core/pull/3057">#3057</a></p>
+      <h3>A portable crypto result has a portable-crypto scope</h3>
+      <p>In the AES-GCM reference backend, I worked on GHASH, which combines blocks using multiplication over a binary finite field. The implementation replaced byte-oriented operations with two 64-bit words and mask-based XOR and reduction. The PR also simplified multiplication by fixed AES coefficients. The reported median for the local GHASH microbenchmark went from about 1.07 microseconds to 223 nanoseconds. The reference-backend test runs included standard vector suites. That result describes this backend and benchmark setup. <a href="https://github.com/sourcemeta/core/pull/2905">#2905</a></p>
+      <p>These changes gave me a rule for writing performance claims. Name the operation, the fixture, the build, and the statistic. If I can’t say where the number came from, it doesn’t belong in the headline.</p>
+      <h2>What Core guarantees in MCP</h2>
+      <p>The largest contribution added MCP 2026-07-28 support to Core’s reusable helpers, alongside revision-aware behavior for three 2025 revisions. I separated the JSON-RPC notification constructor, the MCP header split, and the test-file reorganization into smaller changes. That let each prerequisite be reviewed independently of the protocol feature. <a href="https://github.com/sourcemeta/core/pull/2954">#2954</a> <a href="https://github.com/sourcemeta/core/pull/2958">#2958</a> <a href="https://github.com/sourcemeta/core/pull/2961">#2961</a> <a href="https://github.com/sourcemeta/core/pull/2878">#2878</a></p>
+      <p>The follow-ups concentrated on concrete edges. Numeric fields that require integers should judge mathematical value, so an integer-valued representation such as <code>1.0</code> can be accepted where the relevant field rules allow it. Empty metadata keys fail validation. Tests cover version gates, header value round trips, and continuation behavior. Smaller improvements removed copies, made ignored results easier for the compiler to flag, and gave callers an option to move a JSON payload into a result writer. <a href="https://github.com/sourcemeta/core/pull/3003">#3003</a> <a href="https://github.com/sourcemeta/core/pull/3023">#3023</a> <a href="https://github.com/sourcemeta/core/pull/3037">#3037</a> <a href="https://github.com/sourcemeta/core/pull/3024">#3024</a> <a href="https://github.com/sourcemeta/core/pull/3025">#3025</a></p>
+      <p>I also added helper benchmarks before changing parameter-header lookup. The 64-descriptor benchmark improved from 53.70 to 15.95 microseconds in the comparison reported on the PR. The unchanged subscription benchmark varied by about 16% on the same host. I can say the header fixture improved in that run and still leave room for a different result under other conditions. <a href="https://github.com/sourcemeta/core/pull/3031">#3031</a> <a href="https://github.com/sourcemeta/core/pull/3032">#3032</a></p>
+      <p>Two documentation-and-test PRs captured where the application takes over. Building a successful MCP envelope leaves application schema validation to the caller. Checking an echoed continuation token leaves expiry, authorization, and single-use state consumption to the deployment. One test calls continuation validation twice with the same expected token to make that boundary explicit. <a href="https://github.com/sourcemeta/core/pull/3043">#3043</a> <a href="https://github.com/sourcemeta/core/pull/3044">#3044</a></p>
+      <p>The 24 PRs cover very different code, but the part I want to keep doing is the same. Take an assumption somebody could get wrong, find an input that makes it visible, and leave a test or a measurement that the next contributor can use. That can be as small as captured ANSI bytes, or as consequential as a malformed claim in a signed token.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="section-inner footer-inner">
+    <span>© <span id="year"></span> Harsh Popat. All rights reserved.</span>
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
