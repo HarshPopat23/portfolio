@@ -742,3 +742,21 @@ main [id] { scroll-margin-top: 100px; }
   .writing-article-header { grid-template-columns: 1fr; }
   .writing-article-header img { max-width: 160px; }
 }
+
+.writing-article table {
+  width: 100%;
+  margin: 20px 0;
+  border-collapse: collapse;
+}
+
+.writing-article th,
+.writing-article td {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.writing-article th {
+  background: var(--bg-alt);
+}
