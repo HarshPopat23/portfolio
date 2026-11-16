@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>One Week, Four MIT Lectures, and a Better Understanding of Bitcoin | Harsh Popat</title>
+  <meta name="description" content="What I learned from four MIT Bitcoin lectures in one week, from digital cash and mining to signatures, UTXOs, and the questions I still want to explore.">
+  <link rel="canonical" href="https://harshpopat.vercel.app/bitcoin-lectures.html">
+  <meta property="og:title" content="One Week, Four MIT Lectures, and a Better Understanding of Bitcoin | Harsh Popat">
+  <meta property="og:description" content="What I learned from four MIT Bitcoin lectures in one week, from digital cash and mining to signatures, UTXOs, and the questions I still want to explore.">
+  <meta property="og:url" content="https://harshpopat.vercel.app/bitcoin-lectures.html">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://harshpopat.vercel.app/images/bitcoin-lectures.webp">
+  <meta property="og:image:alt" content="Cream-paper illustration of Bitcoin coins, a Merkle tree, keys, blocks, dice, wallets, and a student notebook">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header" id="top">
+  <div class="header-inner">
+    <a href="index.html" class="logo">Harsh Popat<span class="logo-dot">.</span></a>
+    <nav class="nav" id="nav" aria-label="Main navigation">
+      <a href="about.html">About</a>
+      <a href="open-source.html">Open Source</a>
+      <a href="projects.html">Projects</a>
+      <a href="skills.html">Skills</a>
+      <a href="achievements.html">Achievements</a>
+      <a href="writings.html" aria-current="location">Writings</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <a href="Harsh_Popat_Resume.pdf" class="btn btn-ghost" download>Resume</a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="section">
+  <div class="section-inner">
+    <a class="project-link" href="writings.html">← Back to Writings</a>
+    <article class="writing-article">
+<header class="writing-article-header">
+<div><p class="eyebrow">Bitcoin learning</p><h1>One Week, Four MIT Lectures, and a Better Understanding of Bitcoin</h1><p class="writing-byline">By Harsh Popat</p></div>
+<img src="images/bitcoin-lectures.webp" width="768" height="1152" alt="Cream-paper illustration of Bitcoin coins, a Merkle tree, keys, blocks, dice, wallets, and a student notebook">
+</header>
+<p>Over the past week, I completed the first four lectures of MIT’s <strong>Cryptocurrency Engineering and Design</strong> course, taught by Neha Narula and Tadge Dryja. I’m preparing for Summer of Bitcoin 2027, and I wanted to understand what the software is actually checking when someone sends a payment.</p>
+<p>I had already been learning about transactions, UTXOs, keys, and mining. But knowing the definitions was different from understanding how they fit together. These lectures gave me a way to connect them. They also gave me plenty of reasons to stop and ask basic questions again.</p>
+<p>The biggest change was that I started seeing Bitcoin as several separate problems with different solutions: authorizing a payment, detecting changes to data, choosing a transaction history, and checking whether money is still available to spend.</p>
+<h2 id="lecture-1-why-digital-cash-is-difficult">Lecture 1: Why digital cash is difficult</h2>
+<p>Sending a file is easy. Making sure its sender hasn’t kept a copy is much harder. If a digital coin were just a file, I could send it to two people. That simple observation made the double-spending problem much clearer to me.</p>
+<p>A bank solves this by maintaining the record. Bitcoin needs a way for people to agree on that record without handing the whole job to one institution.</p>
+<p>Learning about <strong>David Chaum’s blind-signature e-cash</strong> was new for me. A mint could sign a token without seeing its unblinded contents, allowing privacy between issuance and redemption. But the mint still had to issue the tokens and check whether they had already been spent. Privacy and decentralization were separate problems.</p>
+<p>Hash functions then started making more sense. A hash is a fixed-size digital fingerprint. The same input produces the same fingerprint; changing the input usually produces a very different result. A strong hash also makes finding matching inputs computationally difficult.</p>
+<p>One detail surprised me: finding <em>any two</em> inputs with the same hash is a different problem from finding an input for one specific hash. The birthday effect makes the first problem easier in general. “Hard to reverse” was too broad a description for everything a hash does.</p>
+<p><strong>Merkle trees</strong> were another useful discovery. A root commits to a whole collection, and a short path of sibling hashes can show that one item belongs to it. The root doesn’t contain the original data. It gives us a compact way to check a claim about that data.</p>
+<h2 id="lecture-2-mining-has-no-progress-bar">Lecture 2: Mining has no progress bar</h2>
+<p>Proof of work was the topic where I had to change my intuition most.</p>
+<p>I’m used to computers making steady progress: a download reaches 80%, then 90%, then finishes. Mining doesn’t work like that. A failed hash doesn’t make the next attempt more likely to succeed.</p>
+<p>Miners keep changing a candidate block header and hashing it. A result qualifies when its numerical value is <strong>less than or equal to the target</strong>. Thinking of the target as a number helped more than the usual explanation about leading zeros.</p>
+<p>The ten-minute interval also needed some unpacking. It’s an average the network aims for, not a deadline. Under a model with constant hash rate and difficulty, a long wait doesn’t mean the next block is overdue. I understood that much better through the analogy of repeatedly rolling a die.</p>
+<p>I also learned why counting machines or usernames wouldn’t work. One person can create many identities. Proof of work makes creating more identities insufficient to gain more mining power; producing more qualifying work requires actual computation.</p>
+<p>Two distinctions stayed with me:</p>
+<ul>
+<li><strong>Checking a header’s proof of work is quick. Checking the entire block involves much more</strong>, including its transactions and signatures.</li>
+<li>Nodes follow the <strong>valid chain with the most accumulated work</strong>, rather than simply the branch containing the most blocks.</li>
+</ul>
+<p>A miner with majority hash rate can threaten recent payments and attempt censorship. It still can’t make honest nodes accept forged signatures or a reward that breaks the issuance rules. Mining power and permission to change the rules are different things.</p>
+<h2 id="lecture-3-signatures-became-less-mysteriousand-more-delicate">Lecture 3: Signatures became less mysterious—and more delicate</h2>
+<p>I’d been using “private key,” “public key,” and “signature” as familiar words. Comparing signature schemes made me look at their actual jobs.</p>
+<p><strong>Lamport signatures</strong> were a helpful starting point because I could follow the idea: publish hashes of secrets, then reveal selected secrets to sign a message. But revealing those pieces makes key reuse dangerous. A seed can regenerate secrets and save storage; it doesn’t remove the need to track which one-time keys have already been used.</p>
+<p><strong>RSA</strong> showed a different route, using arithmetic connected to the difficulty of factoring large numbers. Reusable signatures come with their own requirements, including proper message encoding. The small equations used for teaching aren’t complete production signing schemes.</p>
+<p>Elliptic curves took more effort. I needed to separate ordinary number arithmetic from point arithmetic. In Bitcoin’s curve, a private number <code>a</code> produces a public point <code>A = aG</code>. Calculating that point is practical; finding <code>a</code> from the public point is believed infeasible with known classical methods at Bitcoin’s key size.</p>
+<p>Schnorr helped me see why that algebra matters. In simplified BIP340 notation, signing produces <code>s = k + ea</code> modulo the curve order, and verification checks <code>sG = R + eA</code>. The challenge binds the nonce point, public key, and message together. The real specification includes additional encoding and validation rules.</p>
+<p>The most memorable warning was <strong>nonce reuse</strong>. Reusing the same secret signing nonce across different messages can expose the private key through the relationship between two signatures. A signing nonce also has a completely different job from a mining nonce, even though both use the same word.</p>
+<p>That made implementation details feel much less optional. A mathematically sound signature scheme can still fail when the software uses it incorrectly.</p>
+<h2 id="lecture-4-a-balance-is-made-of-unspent-outputs">Lecture 4: A balance is made of unspent outputs</h2>
+<p>The transaction lecture brought everything back to an example I could calculate myself.</p>
+<p>Suppose I have one UTXO worth <strong>100,000 sats</strong>. I want to pay <strong>60,000 sats</strong>, with a fee of <strong>1,000 sats</strong>. My transaction spends the old output completely and creates two new outputs:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Destination</th>
+<th style="text-align: right;">Amount</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Recipient</td>
+<td style="text-align: right;">60,000 sats</td>
+</tr>
+<tr class="even">
+<td>Change back to my wallet</td>
+<td style="text-align: right;">39,000 sats</td>
+</tr>
+</tbody>
+</table>
+<p>The remaining 1,000 sats is the fee. It isn’t a separate fee output. If I leave out the change output, Bitcoin doesn’t automatically return that money.</p>
+<p>An input identifies the old output through an <strong>outpoint: transaction ID plus output index</strong>. That helped fix an earlier confusion of mine. The transaction ID tells me <em>which transaction</em>; confirmations tell me <em>how deeply it is recorded in the chain</em>. Confirmations aren’t part of an output’s address within a transaction.</p>
+<p>Bitcoin Script became easier to understand as a list of spending conditions. In the P2PKH example, the node checks that the supplied public key matches the committed hash, then checks the signature. Watching the stack change step by step made opcodes feel more concrete.</p>
+<p>That example doesn’t describe every spending type. SegWit can place spending proofs in witness data, and script checks are only part of full transaction validation.</p>
+<p>I also corrected my understanding of the <strong>UTXO set</strong>. It’s the active unspent-output state, backed by storage and supported by memory caches. A node doesn’t need to keep the entire set in RAM. Its growth still matters because nodes must maintain and query it.</p>
+<h2 id="what-was-difficult-and-what-im-taking-forward">What was difficult, and what I’m taking forward</h2>
+<p>My hardest moments came from explanations that sounded familiar but hid an important distinction: a hash versus a signature, a transaction ID versus a confirmation count, or a private key versus a one-time signing nonce.</p>
+<p>Asking for smaller examples helped. I could follow the UTXO accounting with three amounts. I could understand memoryless mining through dice rolls. Only after that did the equations become useful.</p>
+<p>I also learned to be careful with generated notes. They helped organize the lectures, but I had to correct statements such as “verifying a block takes one hash” and “the whole UTXO set lives in RAM.” A detailed explanation can still be wrong.</p>
+<p>Finishing four lectures hasn’t made me ready to redesign Bitcoin. It has given me better questions to bring to the code. Next, I want to decode a transaction, follow a small Script example, build a Merkle inclusion proof, and practise a payment on regtest. For cryptographic signing, I want to understand and use established libraries rather than mistake a teaching example for a secure implementation.</p>
+<p>A week ago, I could name many of these parts. Now I can explain more of what each one checks—and I’m getting better at noticing where my explanation still has a gap.</p>
+<hr />
+<h3 id="course-and-technical-references">Course and technical references</h3>
+<ul>
+<li><a href="https://ocw.mit.edu/courses/mas-s62-cryptocurrency-engineering-and-design-spring-2018/video_galleries/lecture-videos/">MIT Cryptocurrency Engineering and Design — lecture videos</a></li>
+<li><a href="https://developer.bitcoin.org/reference/block_chain.html">Bitcoin developer reference — block headers and proof of work</a></li>
+<li><a href="https://developer.bitcoin.org/devguide/transactions.html">Bitcoin developer guide — transactions</a></li>
+<li><a href="https://bips.dev/340/">BIP340 — Schnorr signatures</a></li>
+<li><a href="https://www.rfc-editor.org/rfc/rfc8391">RFC 8391 — XMSS and stateful hash-based signatures</a></li>
+</ul>
+
+</article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="section-inner footer-inner">
+    <span>© <span id="year"></span> Harsh Popat. All rights reserved.</span>
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
