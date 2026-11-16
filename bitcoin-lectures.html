@@ -69,7 +69,7 @@
 <li>Nodes follow the <strong>valid chain with the most accumulated work</strong>, rather than simply the branch containing the most blocks.</li>
 </ul>
 <p>A miner with majority hash rate can threaten recent payments and attempt censorship. It still can’t make honest nodes accept forged signatures or a reward that breaks the issuance rules. Mining power and permission to change the rules are different things.</p>
-<h2 id="lecture-3-signatures-became-less-mysteriousand-more-delicate">Lecture 3: Signatures became less mysterious—and more delicate</h2>
+<h2 id="lecture-3-signatures-became-less-mysteriousand-more-delicate">Lecture 3: Signatures became less mysterious-and more delicate</h2>
 <p>I’d been using “private key,” “public key,” and “signature” as familiar words. Comparing signature schemes made me look at their actual jobs.</p>
 <p><strong>Lamport signatures</strong> were a helpful starting point because I could follow the idea: publish hashes of secrets, then reveal selected secrets to sign a message. But revealing those pieces makes key reuse dangerous. A seed can regenerate secrets and save storage; it doesn’t remove the need to track which one-time keys have already been used.</p>
 <p><strong>RSA</strong> showed a different route, using arithmetic connected to the difficulty of factoring large numbers. Reusable signatures come with their own requirements, including proper message encoding. The small equations used for teaching aren’t complete production signing schemes.</p>
@@ -110,15 +110,6 @@
 <p>Finishing four lectures hasn’t made me ready to redesign Bitcoin. It has given me better questions to bring to the code. Next, I want to decode a transaction, follow a small Script example, build a Merkle inclusion proof, and practise a payment on regtest. For cryptographic signing, I want to understand and use established libraries rather than mistake a teaching example for a secure implementation.</p>
 <p>A week ago, I could name many of these parts. Now I can explain more of what each one checks—and I’m getting better at noticing where my explanation still has a gap.</p>
 <hr />
-<h3 id="course-and-technical-references">Course and technical references</h3>
-<ul>
-<li><a href="https://ocw.mit.edu/courses/mas-s62-cryptocurrency-engineering-and-design-spring-2018/video_galleries/lecture-videos/">MIT Cryptocurrency Engineering and Design — lecture videos</a></li>
-<li><a href="https://developer.bitcoin.org/reference/block_chain.html">Bitcoin developer reference — block headers and proof of work</a></li>
-<li><a href="https://developer.bitcoin.org/devguide/transactions.html">Bitcoin developer guide — transactions</a></li>
-<li><a href="https://bips.dev/340/">BIP340 — Schnorr signatures</a></li>
-<li><a href="https://www.rfc-editor.org/rfc/rfc8391">RFC 8391 — XMSS and stateful hash-based signatures</a></li>
-</ul>
-
 </article>
   </div>
 </main>
